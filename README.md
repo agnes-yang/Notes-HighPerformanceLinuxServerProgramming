@@ -23,6 +23,7 @@
 为两台主机的应用提供端到端(end to end)的通信. 与网络层使用的下一跳不同, 他只关心起始和终止, 中转过程交给下层处理.
 此层存在两大协议TCP协议和UDP协议
 TCP协议(Transmission Control Protocol 传输控制协议)
+
 - 为应用层提供`可靠的, 面向连接, 基于流的服务`
 - 通过`超时重传`和`数据确认`等确保数据正常送达.
 - TCP需要存储一些必要的状态, 连接的状态, 读写缓冲区, 诸多定时器
@@ -143,12 +144,12 @@ Flags [.], ack 2, win 503, length 0
 
 ## 第五章Linux网络编程基础API
 
-
 socket基础api位于 `sys/socket.h` 头文件中
 socket最开始的含义是 一个IP地址和端口对. 唯一的表示了TCP通信的一段
 网络信息api `netdb.h`头文件中
 
 ### 主机字节序和网络字节序
+
 字节序分为 `大端字节序`和`小端字节序`
 由于大多数PC采用小端字节序(高位存在高地址处), 所以小端字节序又称为主机字节序
 
@@ -1265,8 +1266,10 @@ int epoll_wait(int epfd, struct epoll_event* events, int maxevents, int timeout)
 ```
 
 ## 三种IO复用的比较
+
 `select`以及`poll`和`epoll`
 相同
+
 - 都能同时监听多个文件描述符, 都将等待timeout参数指定的超时时间, 直到一个或多个文件描述符上有事件发生.
 - 返回值为就绪的文件描述符数量, 返回0则表示没有事件发生
 - ![](https://lsmg-img.oss-cn-beijing.aliyuncs.com/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B%E8%AF%BB%E4%B9%A6%E8%AE%B0%E5%BD%95/%E4%B8%89%E7%A7%8DIO%E5%A4%8D%E7%94%A8%E6%AF%94%E8%BE%83.png)
@@ -1276,7 +1279,6 @@ int epoll_wait(int epfd, struct epoll_event* events, int maxevents, int timeout)
 connect出错的时候会返回一个errno值 EINPROGRESS - 表示对非阻塞socket调用connect, 连接又没有立即建立的时候, 这时可以调用select和poll函数来监听这个连接失败的socket上的可写事件.
 
 当函数返回的时候, 可以用getsockopt来读取错误码, 并清楚该socket上的错误. 错误码为0表示成功
-
 
 # 第十章信号
 
@@ -1404,6 +1406,7 @@ int main(int argc, char* argv[])
 ## # 时间堆
 
 # 第十二章高性能IO框架库
+
 另出一篇博客
 
 # 第十三章多进程编程
